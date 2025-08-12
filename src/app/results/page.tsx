@@ -64,14 +64,13 @@ function ResultsContent() {
               Compliance Check Results
             </h1>
             <p className="text-md text-gray-600">
-              The following results were generated from your script on{" "}
+              The following results were generated from your script{" "}
               {(() => {
-                // Prefer ISO input; safely parse and fallback if invalid
                 const date = createdAt ? new Date(createdAt) : null;
                 const isValid = date instanceof Date && !isNaN(date.getTime());
                 return isValid
-                  ? format(date, "MMM d, yyyy hh:mm a")
-                  : "an unknown date";
+                  ? "on " + format(date, "MMM d, yyyy hh:mm a")
+                  : "";
               })()}
               .
             </p>

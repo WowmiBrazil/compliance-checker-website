@@ -163,6 +163,7 @@ export const ComplianceReportPDF: React.FC<{
                     borderRadius: 4,
                     overflow: "hidden",
                   }}
+                  wrap={false}
                 >
                   <View
                     style={{
@@ -186,6 +187,7 @@ export const ComplianceReportPDF: React.FC<{
                   {category.errors.map((error, errorIndex) => (
                     <View
                       key={errorIndex}
+                      wrap={false}
                       style={{
                         padding: 10,
                         borderBottomWidth: 1,
