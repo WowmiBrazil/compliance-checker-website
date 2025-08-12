@@ -4,12 +4,11 @@ import { Document, Page, Text, View, pdf, Image } from "@react-pdf/renderer";
 import { ComplianceResponse } from "@/hooks/use-compliance-check";
 import { format } from "date-fns";
 
-//
-const currentDate = format(new Date(), "MMM d, yyyy hh:mm a");
 export const ComplianceReportPDF: React.FC<{
   result: ComplianceResponse;
   originalScript: string;
-}> = ({ result, originalScript }) => {
+  generatedAt: string;
+}> = ({ result, originalScript, generatedAt }) => {
   const hasErrors = result.errors.some(
     (category) => category.errors.length > 0
   );
@@ -78,7 +77,7 @@ export const ComplianceReportPDF: React.FC<{
                 textAlign: "center",
               }}
             >
-              Generated on {currentDate}
+              Generated on {generatedAt}
             </Text>
           </View>
         </View>
@@ -235,14 +234,22 @@ export const generatePDF = async (
   originalScript: string
 ) => {
   try {
+    const now = new Date();
+    const generatedAtDisplay = format(now, "MMM d, yyyy hh:mm a");
+    const generatedAtFile = format(now, "MMM-d-yyyy-hh-mm-a");
+
     const blob = await pdf(
-      <ComplianceReportPDF result={result} originalScript={originalScript} />
+      <ComplianceReportPDF
+        result={result}
+        originalScript={originalScript}
+        generatedAt={generatedAtDisplay}
+      />
     ).toBlob();
 
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `compliance-report-${currentDate.replace(/ /g, "-")}.pdf`;
+    link.download = `compliance-report-${generatedAtFile}.pdf`;
 
     document.body.appendChild(link);
     link.click();

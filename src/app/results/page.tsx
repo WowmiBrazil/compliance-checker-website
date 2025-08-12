@@ -7,8 +7,6 @@ import { Suspense } from "react";
 import { ComplianceResponse } from "@/hooks/use-compliance-check";
 import PositiveResults from "@/components/results/positive-results";
 import NegativeResults from "@/components/results/negative-results";
-import { PDFViewer } from "@react-pdf/renderer";
-import { ComplianceReportPDF } from "@/lib/pdf-generator";
 
 function parseResultParam(value: string): ComplianceResponse | null {
   try {
