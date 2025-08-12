@@ -1,0 +1,27 @@
+{
+    "errors": [
+        {
+            "title": "Trigger Terms & Disclosures",
+            "errors": []
+        },
+        {
+            "title": "Prohibited Language",
+            "errors": []
+        },
+        {
+            "title": "Source Verification",
+            "errors": [
+                "Content appears to be unsubstantiated opinion without reference to approved data sources",
+                "Claims about AI technology lack verification from approved regulatory or industry sources"
+            ]
+        },
+        {
+            "title": "Professional Standards",
+            "errors": [
+                "Content is not relevant to mortgage lending or financial services",
+                "Discussion of AI control scenarios fails to maintain professional standards appropriate for financial services",
+                "Content lacks focus on mortgage-related topics required for marketing materials"
+            ]
+        }
+    ]
+}
