@@ -28,7 +28,6 @@ function ResultsContent() {
   const script = searchParams.get("script") || "";
   const resultData = searchParams.get("result");
   const createdAt = searchParams.get("createdAt");
-  console.log({ createdAt });
 
   if (!resultData) {
     router.push("/");
