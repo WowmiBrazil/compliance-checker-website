@@ -235,8 +235,12 @@ export const generatePDF = async (
   createdAt: string
 ) => {
   try {
-    const generatedAtDisplay = format(createdAt, "MMM d, yyyy hh:mm:ss a");
-    const generatedAtFile = format(createdAt, "MMM-d-yyyy-hh-mm-ss-a");
+    const parsed = createdAt ? new Date(createdAt) : new Date();
+    const safeDate =
+      parsed instanceof Date && !isNaN(parsed.getTime()) ? parsed : new Date();
+
+    const generatedAtDisplay = format(safeDate, "MMM d, yyyy hh:mm:ss a");
+    const generatedAtFile = format(safeDate, "MMM-d-yyyy-hh-mm-ss-a");
 
     const blob = await pdf(
       <ComplianceReportPDF

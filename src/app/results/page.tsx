@@ -66,7 +66,15 @@ function ResultsContent() {
             </h1>
             <p className="text-md text-gray-600">
               The following results were generated from your script on{" "}
-              {format(new Date(createdAt || ""), "MMM d, yyyy hh:mm a")}.
+              {(() => {
+                // Prefer ISO input; safely parse and fallback if invalid
+                const date = createdAt ? new Date(createdAt) : null;
+                const isValid = date instanceof Date && !isNaN(date.getTime());
+                return isValid
+                  ? format(date, "MMM d, yyyy hh:mm a")
+                  : "an unknown date";
+              })()}
+              .
             </p>
           </div>
         </div>
