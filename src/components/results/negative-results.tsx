@@ -18,11 +18,13 @@ import { generatePDF } from "@/lib/pdf-generator";
 interface NegativeResultsProps {
   result: ComplianceResponse;
   script: string;
+  createdAt: string;
 }
 
 export default function NegativeResults({
   result,
   script,
+  createdAt,
 }: NegativeResultsProps) {
   const totalErrors =
     result?.errors.reduce((sum, category) => sum + category.errors.length, 0) ||
@@ -30,7 +32,7 @@ export default function NegativeResults({
   const categoriesWithErrors = result.errors.filter(
     (cat) => cat.errors.length > 0
   );
-  const downloadPDF = () => generatePDF(result, script);
+  const downloadPDF = () => generatePDF(result, script, createdAt);
 
   return (
     <>

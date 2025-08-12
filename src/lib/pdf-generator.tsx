@@ -231,12 +231,12 @@ export const ComplianceReportPDF: React.FC<{
 
 export const generatePDF = async (
   result: ComplianceResponse,
-  originalScript: string
+  originalScript: string,
+  createdAt: string
 ) => {
   try {
-    const now = new Date();
-    const generatedAtDisplay = format(now, "MMM d, yyyy hh:mm a");
-    const generatedAtFile = format(now, "MMM-d-yyyy-hh-mm-a");
+    const generatedAtDisplay = format(createdAt, "MMM d, yyyy hh:mm:ss a");
+    const generatedAtFile = format(createdAt, "MMM-d-yyyy-hh-mm-ss-a");
 
     const blob = await pdf(
       <ComplianceReportPDF

@@ -36,6 +36,7 @@ export default function ScriptInputPage() {
           const params = new URLSearchParams({
             script: script,
             result: JSON.stringify(data),
+            createdAt: new Date().toISOString(),
           });
           router.push(`/results?${params.toString()}`);
         },

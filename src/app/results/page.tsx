@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { ComplianceResponse } from "@/hooks/use-compliance-check";
 import PositiveResults from "@/components/results/positive-results";
 import NegativeResults from "@/components/results/negative-results";
+import { format } from "date-fns";
 
 function parseResultParam(value: string): ComplianceResponse | null {
   try {
@@ -26,6 +27,8 @@ function ResultsContent() {
 
   const script = searchParams.get("script") || "";
   const resultData = searchParams.get("result");
+  const createdAt = searchParams.get("createdAt");
+  console.log({ createdAt });
 
   if (!resultData) {
     router.push("/");
@@ -62,14 +65,23 @@ function ResultsContent() {
               Compliance Check Results
             </h1>
             <p className="text-md text-gray-600">
-              The following results were generated from your script.
+              The following results were generated from your script on{" "}
+              {format(new Date(createdAt || ""), "MMM d, yyyy hh:mm a")}.
             </p>
           </div>
         </div>
         {hasErrors ? (
-          <NegativeResults result={result} script={script} />
+          <NegativeResults
+            result={result}
+            script={script}
+            createdAt={createdAt || ""}
+          />
         ) : (
-          <PositiveResults result={result} script={script} />
+          <PositiveResults
+            result={result}
+            script={script}
+            createdAt={createdAt || ""}
+          />
         )}
       </div>
     </div>

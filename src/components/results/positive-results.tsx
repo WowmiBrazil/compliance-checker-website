@@ -9,13 +9,15 @@ import { generatePDF } from "@/lib/pdf-generator";
 interface PositiveResultsProps {
   result: ComplianceResponse;
   script: string;
+  createdAt: string;
 }
 
 export default function PositiveResults({
   result,
   script,
+  createdAt,
 }: PositiveResultsProps) {
-  const downloadPDF = () => generatePDF(result, script);
+  const downloadPDF = () => generatePDF(result, script, createdAt);
 
   return (
     <Card>
