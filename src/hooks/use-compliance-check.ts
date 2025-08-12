@@ -19,7 +19,7 @@ const checkCompliance = async ({ script }: ComplianceRequest): Promise<Complianc
     const formData = new FormData()
     formData.append("transcription", script)
 
-    return await api.post("compliance/test-compliance", { body: formData }).json()
+    return await api.post("compliance/test-compliance", { body: formData, cache: "no-store" }).json()
 }
 
 export const useComplianceCheck = () => {
