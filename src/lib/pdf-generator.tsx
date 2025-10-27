@@ -159,7 +159,7 @@ export const ComplianceReportPDF: React.FC<{
                   style={{
                     marginBottom: 10,
                     borderWidth: 1,
-                    borderColor: "#262A82",
+                    borderColor: "#000000",
                     borderRadius: 4,
                     overflow: "hidden",
                   }}
@@ -167,10 +167,10 @@ export const ComplianceReportPDF: React.FC<{
                 >
                   <View
                     style={{
-                      backgroundColor: "#262A82",
+                      backgroundColor: "#000000",
                       padding: 10,
                       borderBottomWidth: 1,
-                      borderBottomColor: "#262A82",
+                      borderBottomColor: "#000000",
                     }}
                   >
                     <Text

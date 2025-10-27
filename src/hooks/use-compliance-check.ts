@@ -1,29 +1,37 @@
-import { api } from "@/lib/api"
-import { QUERY_KEYS } from "@/lib/query-keys"
-import { useMutation } from "@tanstack/react-query"
+import { api } from "@/lib/api";
+import { QUERY_KEYS } from "@/lib/query-keys";
+import { useMutation } from "@tanstack/react-query";
 
 interface ComplianceError {
-    title: string
-    errors: string[]
+  title: string;
+  errors: string[];
 }
 
 export interface ComplianceResponse {
-    errors: ComplianceError[]
+  errors: ComplianceError[];
 }
 
 interface ComplianceRequest {
-    script: string
+  script: string;
 }
 
-const checkCompliance = async ({ script }: ComplianceRequest): Promise<ComplianceResponse> => {
-    const formData = new FormData()
-    formData.append("transcription", script)
+const checkCompliance = async ({
+  script,
+}: ComplianceRequest): Promise<ComplianceResponse> => {
+  const formData = new FormData();
+  formData.append("transcription", script);
 
-    return await api.post("compliance/test-compliance", { body: formData, cache: "no-store" }).json()
-}
+  return await api
+    .post("compliance/test-compliance", {
+      body: formData,
+      cache: "no-store",
+      headers: { "x-company": "10xhe" },
+    })
+    .json();
+};
 
 export const useComplianceCheck = () => {
-    return useMutation({
-        mutationFn: checkCompliance,
-    });
+  return useMutation({
+    mutationFn: checkCompliance,
+  });
 };
