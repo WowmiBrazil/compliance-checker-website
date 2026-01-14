@@ -12,6 +12,7 @@ export const ComplianceReportPDF: React.FC<{
   const hasErrors = result.errors.some(
     (category) => category.errors.length > 0
   );
+  const issueBorderColor = "hsl(248 88% 66%)";
   // const totalErrors = result.errors.reduce(
   //   (sum, category) => sum + category.errors.length,
   //   0
@@ -63,7 +64,6 @@ export const ComplianceReportPDF: React.FC<{
                 fontSize: 18,
                 fontWeight: "bold",
                 color: "#1f2937",
-                // marginBottom: 10,
                 textAlign: "center",
               }}
             >
@@ -159,7 +159,7 @@ export const ComplianceReportPDF: React.FC<{
                   style={{
                     marginBottom: 10,
                     borderWidth: 1,
-                    borderColor: "#000000",
+                    borderColor: issueBorderColor,
                     borderRadius: 4,
                     overflow: "hidden",
                   }}
@@ -167,10 +167,11 @@ export const ComplianceReportPDF: React.FC<{
                 >
                   <View
                     style={{
-                      backgroundColor: "#000000",
+                      backgroundColor: issueBorderColor,
                       padding: 10,
                       borderBottomWidth: 1,
-                      borderBottomColor: "#000000",
+                      borderBottomColor: issueBorderColor,
+                      borderColor: issueBorderColor,
                     }}
                   >
                     <Text
@@ -191,7 +192,8 @@ export const ComplianceReportPDF: React.FC<{
                       style={{
                         padding: 10,
                         borderBottomWidth: 1,
-                        borderBottomColor: "#262A82",
+                        borderBottomColor: issueBorderColor,
+                        borderColor: issueBorderColor,
                         ...(errorIndex === category.errors.length - 1
                           ? { borderBottomWidth: 0 }
                           : {}),
